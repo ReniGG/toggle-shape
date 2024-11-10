@@ -23,7 +23,8 @@ will.backward(100)
 will.pendown()
 
 
-def change(*args):
+def change(*args): # onscreenclick() function in Turtle automatically passes the mouse click's x and y coordinates to the change(), making *args necessary to capture these values even if they aren’t used
+    
     #clear previous drawing
     will.clear()
     
@@ -52,13 +53,13 @@ def change(*args):
 
 #change shape
 def toggle_shape():
-    global current_shape
-    current_shape = "circle" if current_shape == "pentagon" else "pentagon"
+    global current_shape # global keyword to modify the variable current_shape that was defined outside of this function, making it persist across multiple function calls
+    current_shape = "circle" if current_shape == "pentagon" else "pentagon" # ternary operator to change the value of current_shape based on its current value
     
 ws.onscreenclick(change)
 
-#bind the key press event to the toggle_shape function
-ws.listen()
-ws.onkey(toggle_shape, "space")  # Change shape on spacebar press
+ws.listen() #tells the program to start listening for user inputs, such as keyboard presses or mouse clicks
+ws.onkey(toggle_shape, "space")  # binds the spacebar key to the toggle_shape function
 
-turtle.done()
+# tells the turtle graphics system that the program is finished, without it the window may close immediately after running the program
+turtle.done() 
